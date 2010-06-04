@@ -60,8 +60,9 @@ pidgin.default_iface = "im.pidgin.purple.PurpleInterface"
 pidgin.introspect
 
 if (ss = pidgin.PurpleSavedstatusGetCurrent()).is_a? Array
-  if pidgin.PurpleSavedstatusGetType(ss.first).first == status
-    # already away or available, don't change
+  if pidgin.PurpleSavedstatusGetType(ss.first).first == status &&
+  pidgin.PurpleSavedstatusGetMessage(ss.first).first.to_s == message.to_s
+    # already away or available with this message, don't change
     exit
   end
 
